@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/header/header.js'
-import './style/app.scss'
+import Header from './components/header/header';
+import './style/app.scss';
 
 const App = () => {
   return (
-  <>
+    <>
   <Header />
   <h1>My React App!!</h1>
-  </>
+    </>
   );
 };
 
