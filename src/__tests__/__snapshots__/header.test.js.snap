@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> renders correctly 1`] = `
+<header>
+  <h1>
+    Headers R Fun
+  </h1>
+</header>
+`;
