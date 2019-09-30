@@ -1,10 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Header from '../components/header/header.js'
+import Header from '../components/header/header';
 
-describe("<Form />", () => {
+describe('<Form />', () => {
   it('Form is rendered on the DOM', () => {
-    let app = shallow(<Header />);
+  // eslint-disable-next-line
+    const app = shallow(<Header />);
     expect(app.find('h1').exists()).toBe(true);
   });
   it('renders correctly', () => {
