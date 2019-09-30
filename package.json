@@ -19,6 +19,7 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-scripts": "^3.1.2",
+    "react-styleguidist": "^9.1.16",
     "react-test-renderer": "^16.10.1"
   },
   "devDependencies": {
