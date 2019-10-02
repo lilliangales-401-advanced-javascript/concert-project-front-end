@@ -2,7 +2,7 @@ import React from 'react';
 import { LoginContext } from './context';
 
 const If = (props) => {
-  return !!props.condition ? props.children : null;
+  return props.condition ? props.children : null;
 };
 
 class Login extends React.Component {
