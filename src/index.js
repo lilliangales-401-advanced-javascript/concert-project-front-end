@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './components/header/header';
+import App from './App';
 import './style/app.scss';
 
-const App = () => {
+const Main = () => {
   return (
     <>
   <Header />
-  <h1>My React App!!</h1>
+  <App />
     </>
   );
 };
 
 const root = document.getElementById('root');
-ReactDOM.render(<App />, root);
+ReactDOM.render(<Main />, root);
