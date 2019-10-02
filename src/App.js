@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import superagent from 'superagent';
 
+import Auth from './components/auth/auth';
+import Login from './components/auth/login';
+import LoginProvider from './components/auth/context';
+
+const Read = (props) => {
+  return (
+    <Auth capability="read">
+      <span>Read</span>
+    </Auth>
+  );
+};
+
+const Update = (props) => {
+  return (
+    <Auth capability="update">
+      <span>Update</span>
+    </Auth>
+  );
+};
+
 class App extends Component {
   state = {
-    // response: '',
-    // post: '',
-    // responseToPost: '',
     selectedArtist: '',
   };
-
-
-  // componentDidMount() {
-  //   // Call our fetch function below once the component mounts
-  //   this.callAPI()
-  //     .then((res) => this.setState({ response: res.express }))
-  //     .catch((err) => console.log(err));
-  // }
-
-  callAPI = async () => {
-    const response = await fetch('/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  }
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -42,12 +44,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <ul>
-        <p>{this.state.response}</p>
-        </ul>
+       <LoginProvider>
+        <Login />
+        <Read />
+        <Update />
+       </LoginProvider>
         <form onSubmit={this.onSubmit}>
                 <input onChange={this.onChange} label="Selected Artist" name="selectedArtist" />
                 <br/>

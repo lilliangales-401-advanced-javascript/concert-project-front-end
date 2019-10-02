@@ -1,15 +1,15 @@
 import React from 'react';
+import jwt from 'jsonwebtoken';
+import cookie from 'react-cookies';
 
 export const LoginContext = React.createContext();
 
-// add api in process.env
-const API = process.env.ReactAPI;
+const API = process.env.REACT_APP_BACKEND_API;
 
 class LoginProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // all the auth data we want to pass to children
       loggedIn: false,
       token: null,
       user: {},
@@ -18,7 +18,6 @@ class LoginProvider extends React.Component {
     };
   }
 
-  // login
   login = (username, password, type) => {
     const options = {
       method: 'POST',
@@ -38,24 +37,41 @@ class LoginProvider extends React.Component {
 
     fetch(`${API}/${type}`, options)
       .then((response) => response.text())
+      .then((token) => this.validateToken(token))
       .catch(console.error);
   }
 
-  // logout
+  logout = () => {
+    this.setLoginState(false, null, {});
+  };
 
-  // validate token
+  validateToken = (token) => {
+    try {
+      const user = jwt.verify(token, process.env.REACT_APP_SECRET);
+      console.log(user);
+      this.setLoginState(true, user, token);
+    } catch (e) {
+      this.setLoginState(false, null, {});
+    }
+  }
+
+  setLoginState = (loggedIn, user, token) => {
+    cookie.save('auth', token);
+    this.setState({ token, loggedIn, user });
+  }
 
   componentDidMount() {
-    // when component is born - validate tokens
+    const cookieToken = cookie.load('auth');
+    this.validateToken(cookieToken);
   }
 
   render() {
     return (
-      <LoginContext.Provider>
-        {this.props.children}
+      <LoginContext.Provider value={this.state}>
+        {this.props}
       </LoginContext.Provider>
     );
   }
 }
 
-export default LoginProvider; 
+export default LoginProvider;
