@@ -16,7 +16,7 @@ class Auth extends React.Component {
           okToRender = true;
         }
       }
-    } catch (e) {
+    } catch (error) {
       console.warn('Not Authorized');
     }
 

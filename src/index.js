@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/header/header';
+import { Provider } from 'react-redux';
 import App from './App';
 import './style/app.scss';
+import createStore from './store';
+
+const store = createStore();
 
 const Main = () => {
   return (
     <>
-  <Header />
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
     </>
   );
 };
