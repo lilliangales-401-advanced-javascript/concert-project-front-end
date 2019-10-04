@@ -38,7 +38,6 @@ class LoginProvider extends React.Component {
 
     fetch(`${API}/${type}`, options)
       .then((response) => {
-        console.log(response);
         response.text()
           .then((token) => {
             console.log(token);
