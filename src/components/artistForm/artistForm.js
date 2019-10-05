@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import superagent from 'superagent';
 import Auth from '../auth/auth';
+import cookie from 'react-cookies';
 
 
 class ArtistForm extends Component {
@@ -16,8 +17,9 @@ class ArtistForm extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     superagent.post(`${process.env.REACT_APP_BACKEND_API}/search`)
-      .set('Content-Type', 'application/json')
-      .send({ selectedArtist: JSON.stringify(this.state.selectedArtist) })
+      // .set('Content-Type', 'application/json')
+      // .set('Authorization', `Bearer ${cookie.load(auth)}`)
+      // .send({ selectedArtist: JSON.stringify(this.state.selectedArtist) })
       .then((result) => {
         console.log('RESULT', result.body);
       });

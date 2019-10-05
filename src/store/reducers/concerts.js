@@ -1,6 +1,6 @@
-import { toUnicode } from "punycode";
 
 export default (state = [], action) => {
+  // validation
   switch (action.type) {
     case 'FETCH_CONCERTS':
       return action.payload;

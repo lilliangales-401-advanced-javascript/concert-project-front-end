@@ -25,8 +25,9 @@ const Concerts = (props) => {
 
   function handleUpdateSubmit(event) {
     event.preventDefault();
-    console.log(event.target.id);
-    props.updateConcerts({ id: event.target.id, artist: concertUpdateArtist, date: concertUpdateDate });
+    props.updateConcerts(
+      { id: event.target.id, artist: concertUpdateArtist, date: concertUpdateDate },
+    );
   }
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Concerts = (props) => {
     <>
     <ul> 
       {props.concerts.map((concert, index) => (
+        
 
         <li key={index}>
           <p>{concert.artist}</p>

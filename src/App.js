@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <Header />
        <LoginProvider>
-        <ArtistForm />
+        {/* <ArtistForm /> */}
         <Concerts />
         <Login />
        </LoginProvider>

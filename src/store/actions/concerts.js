@@ -1,3 +1,5 @@
+import cookie from 'react-cookies';
+
 const API = process.env.REACT_APP_BACKEND_API;
 
 const getData = (payload) => {
@@ -29,19 +31,25 @@ const updateData = (payload) => {
 };
 
 const fetchConcerts = () => (dispatch) => {
-  return fetch(`${API}/api/v1/concerts`)
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${cookie.load('auth')}`,
+    }
+  };
+  return fetch(`${API}/api/v1/concerts`, options)
     .then((results) => results.json())
     .then((data) => dispatch(getData(data)));
 };
 
 const addConcerts = (concerts) => (dispatch) => {
-  console.log(concerts);
   const options = {
     method: 'POST',
     body: JSON.stringify(concerts),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Authorization': `Bearer ${cookie.load('auth')}`,
     },
   };
  
@@ -56,6 +64,7 @@ const deleteConcerts = (id) => (dispatch) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Authorization': `Bearer ${cookie.load('auth')}`,
     },
   };
 
@@ -64,8 +73,8 @@ const deleteConcerts = (id) => (dispatch) => {
 };
 
 const updateConcerts = (data) => (dispatch) => {
-  const id = data.id;
-  const artist = data.artist;
+  const { id } = data;
+  const { artist } = data;
   const date = data.artist;
 
   const options = {
@@ -73,6 +82,7 @@ const updateConcerts = (data) => (dispatch) => {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Authorization': `Bearer ${cookie.load('auth')}`,
     },
   };
   fetch(`${API}/api/v1/concerts/${id}`, options)
