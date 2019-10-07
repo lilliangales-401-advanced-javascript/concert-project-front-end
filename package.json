@@ -9,7 +9,6 @@
     "lint": "eslint '**/*.js' --fix",
     "test": "react-scripts test --env=jsdom"
   },
-  "proxy": "http://localhost:3000/",
   "keywords": [],
   "author": "",
   "license": "ISC",
