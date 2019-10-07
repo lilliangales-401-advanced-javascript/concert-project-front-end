@@ -18,6 +18,7 @@ class LoginProvider extends React.Component {
     };
   }
 
+
   login = (username, password, type) => {
     const options = {
       method: 'POST',
@@ -36,8 +37,14 @@ class LoginProvider extends React.Component {
     }
 
     fetch(`${API}/${type}`, options)
-      .then((response) => response.text())
-      .then((token) => this.validateToken(token))
+      .then((response) => {
+        console.log(response);
+        response.text()
+          .then((token) => {
+            console.log(token);
+            this.validateToken(token);
+          });
+      })
       .catch(console.error);
   }
 
@@ -68,7 +75,7 @@ class LoginProvider extends React.Component {
   render() {
     return (
       <LoginContext.Provider value={this.state}>
-        {this.props}
+        {this.props.children}
       </LoginContext.Provider>
     );
   }
